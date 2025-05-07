@@ -1,0 +1,216 @@
+########## SOURCE ##########
+
+# Hello, my name is Omer Incialan. I will write a program that 
+# defines a DateProfile class representing profiles of individuals 
+# looking for dates. Each profile has attributes such as geographical 
+# distance to a certain place, 
+# distance of search candidate to a point, importance of romance in the relationship (In a range 1 to 10),
+# importance of finance (in a range to 1 to 10), and a name. 
+# The program includes methods to set and get these attributes, 
+# calculate fit values between two profiles, and validate input values.
+
+
+# We define the class which instantiates the objects here. 
+class DateProfile:
+    # Static class constants
+    MIN_ROMANCE = 1
+    MAX_ROMANCE = 10
+    MIN_FINANCE = 1
+    MAX_FINANCE = 10
+    MIN_NAME_LEN = 1
+    MAX_NAME_LEN = 50
+    MIN_DISTANCE = 1
+    MAX_DISTANCE = 2
+    MIN_SEARCH_DISTANCE = 1
+    MAX_SEARCH_DISTANCE = 2
+
+    # Default constants for initiation and invalid entries 
+    DEFAULT_DIST = 1
+    DEFAULT_SEARCH_DIST = 1
+    DEFAULT_ROMANCE = 5
+    DEFAULT_FINANCE = 5
+    DEFAULT_NAME = "Unknown"
+    # We are declaring the attributes of the objects here.
+    def __init__(self, distance=None, search_distance=None, romance=None, finance=None, name=None):
+        self.setDefaults()
+        self.setAll(distance, search_distance, romance, finance, name)
+    # Here we are setting our setters for our attributes of the objects
+    def setAll(self, distance, search_distance, romance, finance, name):
+        self.setDistance(distance)
+        self.setSearchDistance(search_distance)
+        self.setRomance(romance)
+        self.setFinance(finance)
+        self.setName(name)
+
+   # this is to set a default value in case of an invalid entry
+    def setDefaults(self):
+        self.distance = self.DEFAULT_DIST
+        self.search_distance = self.DEFAULT_SEARCH_DIST
+        self.romance = self.DEFAULT_ROMANCE
+        self.finance = self.DEFAULT_FINANCE
+        self.name = self.DEFAULT_NAME
+
+    def getDistance(self):
+        return self.distance
+    
+   # to assign value to search distance of our objects.   
+    def setSearchDistance(self, search_distance):
+        if self.validNumber(search_distance, self.MIN_SEARCH_DISTANCE, self.MAX_SEARCH_DISTANCE):
+            self.search_distance = search_distance
+            return True
+        return False
+  # to assign the distance of our object (user who is seeking a partner)
+    def setDistance(self, distance):
+        if self.validNumber(distance, self.MIN_DISTANCE, self.MAX_DISTANCE):
+            self.distance = distance
+            return True
+        return False
+   # assigning the value of romance to our user. (importance of it to the user)
+    def setRomance(self, romance):
+        if self.validNumber(romance, self.MIN_ROMANCE, self.MAX_ROMANCE):
+            self.romance = romance
+            return True
+        return False
+   # assigning the value of finance to our user. (importance of it to the user)
+    def setFinance(self, finance):
+        if self.validNumber(finance, self.MIN_FINANCE, self.MAX_FINANCE):
+            self.finance = finance
+            return True
+        return False
+   # to assign a name to our user
+    def setName(self, name):
+        if self.validString(name, self.MIN_NAME_LEN, self.MAX_NAME_LEN):
+            self.name = name
+            return True
+        return False
+   # calculating the final fit value by the input from helper methods. 
+    def fitValue(self, partner):
+        if self is partner:
+            return 1.0
+
+        romance_fit = self.determineRomanceFit(partner)
+        finance_fit = self.determineFinanceFit(partner)
+        distance_fit = self.determineDistanceFit(partner)
+        return (romance_fit + finance_fit + distance_fit) / 3.0
+    
+   # Here we are declaring our helper methods.  
+    def determineDistanceFit(self, partner):
+        return 1.0 if self.distance == partner.search_distance and self.search_distance == partner.distance else 0.0
+   # Helper methods are going to be used to calculate final match value
+    def determineRomanceFit(self, partner):
+        return 1.0 - abs(self.romance - partner.romance) / (self.MAX_ROMANCE - self.MIN_ROMANCE)
+
+    def determineFinanceFit(self, partner):
+        return 1.0 - abs(self.finance - partner.finance) / (self.MAX_FINANCE - self.MIN_FINANCE)
+   # Here next two methods,we are controlling the validity of input values. 
+    # first the valid interval
+    def validString(cls, the_str, min_len, max_len):
+        return min_len <= len(the_str) <= max_len
+
+    # second valid length for the name
+    def validNumber(cls, the_val, min_val, max_val):
+        return min_val <= the_val <= max_val
+
+    def __str__(self):
+        return f"{self.name} searching for, * rom={self.romance} and w/$ fin={self.finance} and --> dist={self.distance}."
+
+# this is a global function to display profiles with their fit values to each other
+def displayTwoProfiles(profile1, profile2):
+    fit_value = profile1.fitValue(profile2)
+    print(f"Fit between {profile1.name} and {profile2.name}: \t {fit_value:.3f}.")
+
+
+# We are declaring our example users here to be evaluated by instantiating
+# the class with our objects
+applicant1 = DateProfile(1, 1, 10, 1, "Minnie Mouse")
+applicant2 = DateProfile(1, 1, 10, 1, "Micky Mouse")
+applicant3 = DateProfile(2, 1, 3, 9, "Joker")
+applicant4 = DateProfile(1, 2, 5, 5, "Batman")
+
+# We display profiles with their attributes here
+print("\nFirst without loops --------------\n")
+print(applicant1)
+print(applicant2)
+print(applicant3)
+print(applicant4)
+
+# We call our display function to compare candidates and display their fitvalue
+displayTwoProfiles(applicant1, applicant1)
+displayTwoProfiles(applicant1, applicant2)
+displayTwoProfiles(applicant1, applicant3)
+displayTwoProfiles(applicant1, applicant4)
+
+displayTwoProfiles(applicant2, applicant1)
+displayTwoProfiles(applicant2, applicant2)
+displayTwoProfiles(applicant2, applicant3)
+displayTwoProfiles(applicant2, applicant4)
+
+displayTwoProfiles(applicant3, applicant1)
+displayTwoProfiles(applicant3, applicant2)
+displayTwoProfiles(applicant3, applicant3)
+displayTwoProfiles(applicant3, applicant4)
+
+displayTwoProfiles(applicant4, applicant1)
+displayTwoProfiles(applicant4, applicant2)
+displayTwoProfiles(applicant4, applicant3)
+displayTwoProfiles(applicant4, applicant4)
+
+print("\n Now As a list of objects with loops\n")
+
+# Using lists and loops
+applicants = [applicant1, applicant2, applicant3, applicant4]
+
+for profile in applicants:
+    print(profile.__str__())
+    
+for applicant1 in applicants:
+    for applicant2 in applicants:
+        displayTwoProfiles(applicant1, applicant2)
+
+######## RUN ##########
+
+First without loops --------------
+
+Minnie Mouse searching for, * rom=10 and w/$ fin=1 and --> dist=1.
+Micky Mouse searching for, * rom=10 and w/$ fin=1 and --> dist=1.
+Joker searching for, * rom=3 and w/$ fin=9 and --> dist=2.
+Batman searching for, * rom=5 and w/$ fin=5 and --> dist=1.
+Fit between Minnie Mouse and Minnie Mouse: 	 1.000.
+Fit between Minnie Mouse and Micky Mouse: 	 1.000.
+Fit between Minnie Mouse and Joker: 	 0.111.
+Fit between Minnie Mouse and Batman: 	 0.333.
+Fit between Micky Mouse and Minnie Mouse: 	 1.000.
+Fit between Micky Mouse and Micky Mouse: 	 1.000.
+Fit between Micky Mouse and Joker: 	 0.111.
+Fit between Micky Mouse and Batman: 	 0.333.
+Fit between Joker and Minnie Mouse: 	 0.111.
+Fit between Joker and Micky Mouse: 	 0.111.
+Fit between Joker and Joker: 	 1.000.
+Fit between Joker and Batman: 	 0.778.
+Fit between Batman and Minnie Mouse: 	 0.333.
+Fit between Batman and Micky Mouse: 	 0.333.
+Fit between Batman and Joker: 	 0.778.
+Fit between Batman and Batman: 	 1.000.
+
+ Now As a list of objects with loops
+
+Minnie Mouse searching for, * rom=10 and w/$ fin=1 and --> dist=1.
+Micky Mouse searching for, * rom=10 and w/$ fin=1 and --> dist=1.
+Joker searching for, * rom=3 and w/$ fin=9 and --> dist=2.
+Batman searching for, * rom=5 and w/$ fin=5 and --> dist=1.
+Fit between Minnie Mouse and Minnie Mouse: 	 1.000.
+Fit between Minnie Mouse and Micky Mouse: 	 1.000.
+Fit between Minnie Mouse and Joker: 	 0.111.
+Fit between Minnie Mouse and Batman: 	 0.333.
+Fit between Micky Mouse and Minnie Mouse: 	 1.000.
+Fit between Micky Mouse and Micky Mouse: 	 1.000.
+Fit between Micky Mouse and Joker: 	 0.111.
+Fit between Micky Mouse and Batman: 	 0.333.
+Fit between Joker and Minnie Mouse: 	 0.111.
+Fit between Joker and Micky Mouse: 	 0.111.
+Fit between Joker and Joker: 	 1.000.
+Fit between Joker and Batman: 	 0.778.
+Fit between Batman and Minnie Mouse: 	 0.333.
+Fit between Batman and Micky Mouse: 	 0.333.
+Fit between Batman and Joker: 	 0.778.
+Fit between Batman and Batman: 	 1.000.

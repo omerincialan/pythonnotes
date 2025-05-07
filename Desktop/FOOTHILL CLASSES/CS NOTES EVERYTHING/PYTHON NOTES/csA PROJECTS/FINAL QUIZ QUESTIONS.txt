@@ -1,0 +1,744 @@
+Question 11 pts
+Consider the following code segment:
+class Animal :
+  # The body of the class has been omitted
+
+class Dinosaur(Animal) :
+  # The body of the class has been omitted
+
+class Triceratops(Dinosaur) :
+  # The body of the class has been omitted
+
+class Pterodactyl(Dinosaur) :
+  # The body of the class has been omitted
+Which class is at the root of the inheritance hierarchy?
+Group of answer choices
+
+Animal
+
+Pterodactyl
+
+Triceratops
+
+Dinosaur
+ 
+Flag question: Question 2
+Question 21 pts
+Consider classes Oranges, Pears, Apples, Fruit. Which should be the superclass?
+Group of answer choices
+
+Pears
+
+Fruit
+
+Oranges
+
+Apples
+ 
+Flag question: Question 3
+Question 31 pts
+What is the substitution principle?
+Group of answer choices
+
+You can always use a subclass object when a superclass object is expected
+
+A subclass inherits data and behavior from a superclass
+
+You can create an object from a concrete class, but not from an abstract class.
+
+You can always use a superclass object when a subclass object is expected
+ 
+Flag question: Question 4
+Question 41 pts
+What must a subclass do to modify a private superclass instance variable?
+Group of answer choices
+
+The subclass must use a public method of the superclass (if it exists) to update the superclass's private instance variable.
+
+The subclass must declare its own instance variable with the same name as the superclass instance variable.
+
+The subclass must simply use the name of the superclass instance variable.
+
+The subclass must have its own public method to update the superclass's private instance variable.
+ 
+Flag question: Question 5
+Question 51 pts
+What object oriented programming concept can often be used to eliminate explicit type tests?
+Group of answer choices
+
+Functions
+
+Polymorphism
+
+Class variables
+
+Encapsulation
+ 
+Flag question: Question 6
+Question 61 pts
+When you call a superclass method from a subclass method (without overriding the method), what keyword must replace the self reference?
+Group of answer choices
+
+reference
+
+def
+
+super
+
+base
+ 
+Flag question: Question 7
+Question 71 pts
+Consider the following code segment:
+bankAcct = BankAccount("Fisher", 1000.00)
+bankAcct2 = bankAcct  
+What is the relationship between bankAcct and bankAcct2?
+Group of answer choices
+
+bankAcct and bankAcct2 are aliases for the same object reference
+
+bankAcct and bankAcct2 are self references
+
+bankAcct and bankAcct2 are NONE references
+
+bankAcct and bankAcct2 are separate references
+ 
+Flag question: Question 8
+Question 81 pts
+What is the value of the variable bankAcct after the following code snippet is executed?
+bankAcct = BankAccount("Fisher", 1000.00)
+Group of answer choices
+
+"Fisher"
+
+A memory location
+
+"Fisher", 1000.00
+
+1000.00
+ 
+Flag question: Question 9
+Question 91 pts
+Consider the following code segment:
+class PhoneNumber :
+  
+   def __init__(self, lName, phone = "215-555-1212") :
+      self._name = lName
+      self._phone = phone
+
+   def getName(self):
+      return self._name
+
+   def getPhone(self):
+      return self._phone
+
+Jones = PhoneNumber("Jones")
+print(Jones.getName(), Jones.getPhone())
+What will be printed when it executes?
+Group of answer choices
+
+AttributeError: 'PhoneNumber' object has no attribute
+
+Jones 215-555-1212
+
+Jones
+
+Jones 000-000-0000
+ 
+Flag question: Question 10
+Question 101 pts
+What change needs to be made in the following code segment so that lName will have a default value of "unknown"?
+class PhoneNumber :
+  
+   def __init__(self, lName, phone = "215-555-1212") :
+      self._name = lName
+      self._phone = phone
+Group of answer choices
+
+Replace self._name = lName with self._name = "unknown"
+
+Add self._lName = "unknown" to the end of the constructor
+
+Replace the lName parameter with lName = "unknown"
+
+Add name = "unknown" to the end of the constructor
+ 
+Flag question: Question 11
+Question 111 pts
+Consider the following class which is used to represent a polygon consisting of an arbitrary number of (x, y) points:
+class Polygon :
+   def __init__(self) :
+      self._x_points = []
+      self._y_points = []
+Which of the following code segments is the correct implementation for the addPoint method that adds another point to the polygon?
+Group of answer choices
+
+def addPoint(self, x, y) :
+   self._x_points.append(x)
+   self._y_points.append(y)
+
+def addPoint(self, x, y) :
+   self._points.append(x, y)
+
+def addPoint(self, x, y) :
+   self._x_points = [x]
+   self._y_points = [y]
+
+def addPoint(self, x, y) :
+   self._x_points = x
+   self._y_points = y
+ 
+Flag question: Question 12
+Question 121 pts
+Consider the following code segment:
+class Fruit :
+   _type = "Fruit"
+
+   def __init__(self, color) :
+      self._color = color
+What is the name of the class variable?
+Group of answer choices
+
+color
+
+_type
+
+self
+
+_color
+ 
+Flag question: Question 13
+Question 131 pts
+What is returned by a dictionary's items method?
+Group of answer choices
+
+A sequence of tuples
+
+A list of integers
+
+A set of floating point numbers
+
+A string
+ 
+Flag question: Question 14
+Question 141 pts
+How do you remove items from a dictionary?
+Group of answer choices
+
+get method
+
+remove method
+
+pop method
+
+delete method
+ 
+Flag question: Question 15
+Question 151 pts
+What does the following code segment display?
+data = {"Jan": 31, "Feb": [28, 29], "Mar", 31}
+print(data["Feb"][0])
+Group of answer choices
+
+28
+
+29
+
+2
+
+The program raises an exception
+ 
+Flag question: Question 16
+Question 161 pts
+Given the following code snippet, which statement tests to see if names2 is a subset of names?
+names = set(["Jane", "Joe", "Amy", "Lisa"])
+names2 = set(["Jane", "Joe"])  
+Group of answer choices
+
+if names2.subset(names) : 
+   print(names2)
+
+if names2 isA subset(names) : 
+   print(names2)
+
+if names.subset(names2) : 
+   print(names2)
+
+if names2.issubset(names) : 
+   print(names2)
+ 
+Flag question: Question 17
+Question 171 pts
+What is printed by the following code snippet?
+fruit = set(["apple", "banana", "grapes", "kiwi"])
+fruit2 = set(["apple", "banana", "grapes"])
+fruit3 = set(["apple", "banana", "pears", "kiwi"])
+if fruit2.issubset(fruit) : 
+   print("fruit2 is a subset of fruit")
+if fruit == fruit3 : 
+   print("fruit and fruit3 are equal")
+if fruit != fruit2 : 
+   print("fruit and fruit2 are not equal")  
+Group of answer choices
+
+fruit2 is a subset of fruit    
+
+fruit2 is a subset of fruit
+fruit and fruit3 are equal 
+fruit and fruit2 are not equal
+
+fruit2 is a subset of fruit
+fruit and fruit2 are not equal
+
+fruit and fruit2 are not equal
+ 
+Flag question: Question 18
+Question 181 pts
+Consider the following problem:
+
+A grocery store carries a wide variety of products that fall into broad categories such as fruit, milk and toys. Each category contains many items. For example, the fruit category contains items like apples, oranges and bananas while the milk category contains items like skim, 2% and chocolate, and the toys category includes items like balls, dolls and trucks. A program for the grocery store needs to be able to add new items to a category, remove items from a category and display all of the items in a category. The order in which the items are displayed is not important.
+
+Which container or structure best solves this problem?
+
+Group of answer choices
+
+a dictionary of strings
+
+a set of strings
+
+a dictionary of sets
+
+a list of strings
+ 
+Flag question: Question 19
+Question 191 pts
+Consider the following code segment:
+print("W", end="")
+try :
+   inFile = open("test.txt", "r")
+   line = inFile.readline()
+   value = int(line)
+   print("X", end="")
+
+except IOError :
+   print("Y", end="")
+
+except ValueError :
+   print("Z", end="")
+What output is generated when this program runs if test.txt is opened successfully and its first line contains the number 5?
+Group of answer choices
+
+WX
+
+WXY
+
+W
+
+WXYZ
+ 
+Flag question: Question 20
+Question 201 pts
+Which of the following file operations is NOT valid for reading a binary file?
+Group of answer choices
+
+fileName.close()      
+
+fileName = open("input.dat", "rw")
+
+fileName.write("Good Bye")
+
+fileName = open("input.dat", "r")
+ 
+Flag question: Question 21
+Question 211 pts
+The following code segment is supposed to read all of the lines from test.txt and save them in copy.txt.
+infile = open("test.txt", "r")
+outfile = open("copy.txt", "w")
+
+line = infile.readline()
+____________________
+   outfile.write(line)
+   line = infile.readline()
+
+infile.close()
+outfile.close()
+Which line of code should be placed in the blank to achieve this goal?
+Group of answer choices
+
+while line == "" :
+
+while line == "\n" :
+
+while line != "\n" :
+
+while line != "" :
+ 
+Flag question: Question 22
+Question 221 pts
+Which of the following code segments will display all of the lines in the file object named infile, assuming that it has successfully been opened for reading?
+Group of answer choices
+
+while infile in line :
+   print(line)
+
+for line in infile :
+   print(line)
+
+while line in infile :
+   print(line)
+
+for infile in line :
+   print(line)
+ 
+Flag question: Question 23
+Question 231 pts
+When using the readline method, what data type is returned?
+Group of answer choices
+
+character
+
+integer
+
+string
+
+float
+ 
+Flag question: Question 24
+Question 241 pts
+Assume that your program is started with the following command:
+python myProgram.py the quick brown fox
+What will be displayed by the following statement?
+print(sys.argv[5])
+Group of answer choices
+
+fox
+
+brown
+
+The program will raise an exception
+
+A blank line
+ 
+Flag question: Question 25
+Question 251 pts
+Consider the following code segment:
+x = values[0]
+for i in range(1, len(values)) :
+   if values[i] > x :
+      x = values[i]
+Which of the following statements assigns the same value to x as the code segment above?
+Group of answer choices
+
+x = max(values)
+
+x = sum(values)
+
+x = min(values)
+
+x = sorted(values)
+ 
+Flag question: Question 26
+Question 261 pts
+Which statement correctly creates a list that contains four elements?
+Group of answer choices
+
+values = [1, 2, 3, 4]
+
+value[4] = [1, 2, 3, 4]
+
+values[4]
+
+values = [4]
+ 
+Flag question: Question 27
+Question 271 pts
+What library is used to read and write sound files?
+Group of answer choices
+
+scipy.file.wavfile
+
+scipy.io.wavfile
+
+scipy.io.sound
+
+scipy.file.sound
+ 
+Flag question: Question 28
+Question 281 pts
+What is stored in contents when a sound file is read by the scipy library using the following statement?
+  contents = scipy.io.wavfile.read("meow.wav")
+  
+Group of answer choices
+
+A list of integers
+
+A numPy array
+
+A tuple containing the sample rate and a NumPy array
+
+A tuple containing the sample rate and a list of integers
+ 
+Flag question: Question 29
+Question 291 pts
+The following code segment is supposed to read all of the integers entered by the user until a blank line is entered and store them in values.
+values = []
+inputStr = input("Enter a value (blank line to quit): ")
+____________________
+   values.append(int(inputStr))
+   inputStr = input("Enter a value (blank line to quit): ")
+What line of code should be placed in the blank to achieve this goal?
+Group of answer choices
+
+while inputStr != "" :
+
+while inputStr in values :
+
+for values in inputStr :
+
+for ch in inputStr :
+ 
+Flag question: Question 30
+Question 301 pts
+What will happen when the following code segment is executed?
+values = [1.618, 2.71, 3.14]
+print(values[3])
+Group of answer choices
+
+Python will display 3
+
+Python will display 3.14
+
+Python will display an out-of-range error
+
+Python won't display anything
+ 
+Flag question: Question 31
+Question 311 pts
+Why is hand-tracing or manually walking through the execution of a function helpful?
+Group of answer choices
+
+It guarantees that the function will compile without errors
+
+It is an effective way to understand a function's subtle aspects
+
+It enforces the "black-box" concept of function design
+
+It makes unit testing unnecessary
+ 
+Flag question: Question 32
+Question 321 pts
+Which of the following code snippets returns the factorial of a given number? (Hint: Factorial of 5 = 5! = 1 * 2 * 3 * 4 * 5 = 120)
+Group of answer choices
+
+def factorial(num) :
+   if(num == 1) : 
+      return 1
+   else :
+      print(num * factorial(num - 1))
+
+def factorial(num) :
+   return num * factorial(num - 1)
+
+def factorial(num) :
+   if(num == 1) : 
+      return 1
+   else :
+      return num * factorial(num - 1)
+
+def factorial(num) :
+   if(num == 1) : 
+      return 1
+   else :
+      return num * factorial(num)
+ 
+Flag question: Question 33
+Question 331 pts
+Which of the following code snippets displays the output exactly 10 times?
+Group of answer choices
+
+i = 1
+while i < 10 :
+   print("This is example 4.")
+   i = i + 1
+
+i = 0
+while i < 10 :
+   print("This is example 2.")
+   i = i + 1
+
+i = 0
+while i < 10 :
+   print("This is example 3.")
+
+i = 0
+while i <= 10 :
+   print("This is example 1.")
+   i = i + 1
+ 
+Flag question: Question 34
+Question 341 pts
+What is the output of the following code snippet?
+a = 2
+n = 16
+r = 1
+b = a
+i = n
+while i > 0 :
+   if i % 2 == 0 : # n is even
+      b = b * b
+      i = i / 2
+   else :
+      r = r * b
+      i = i -  1
+print("r =", r)
+Group of answer choices
+
+r = 4096
+
+r = 128
+
+r = 16
+
+r = 65536
+ 
+Flag question: Question 35
+Question 351 pts
+Consider the following code segment:
+numPizzas = 1
+numPeople = 4
+
+if numPeople == 5 :
+   numPizzas = 2
+After this code segment executes, what value is in the variable numPizzas?
+
+Group of answer choices
+
+1
+
+5
+
+4
+
+2
+ 
+Flag question: Question 36
+Question 361 pts
+Suppose that b is False and x is 0. Which of the following expressions evaluates to True?
+Group of answer choices
+
+not b and x == 1
+
+b or x == 1
+
+not b or x == 1
+
+b and x == 0
+ 
+Flag question: Question 37
+Question 371 pts
+What is a variable called that should remain unchanged throughout your program?
+Group of answer choices
+
+a string variable
+
+a constant variable
+
+a boolean variable
+
+a data variable
+ 
+Flag question: Question 38
+Question 381 pts
+Consider the following code segment:
+x = 5
+y = 7
+z = x - y * 2
+After this code segment executes, the value of z is:
+Group of answer choices
+
+5
+
+-4
+
+-9
+
+7
+ 
+Flag question: Question 39
+Question 391 pts
+A Python interpreter is:
+Group of answer choices
+
+a folder hierarchy
+
+a piece of hardware
+
+a piece of software
+
+a type of secondary storage
+ 
+Flag question: Question 40
+Question 401 pts
+Consider the following pseudocode. What does it produce?
+Create a list of consecutive integers from two to n (2, 3, 4, ..., n).
+Initially, let p equal 2.
+Repeat the following steps until p is greater than n:
+    Remove all of the multiples of p less than or equal to n from the list. 
+    If the list contains a number greater than p
+        Find the first number remaining in the list greater than p.
+        Replace p with this number.
+    Otherwise set p equal to n + 1
+Group of answer choices
+
+All factorial numbers up to n
+
+All prime numbers up to n
+
+All odd numbers up to n
+
+All even numbers up to n
+
+
+
+
+
+
+
+
+
+
+
+
+# Define the dimensions
+
+totalWidth = 100
+
+tileWidth = 5
+
+# Calculate the tiles and gaps
+numberOfPairs = (totalWidth - tileWidth) // (2 * tileWidth)
+
+numberOfTiles = 1 + (2 * numberOfPairs)
+
+gap = totalWidth - (numberOfTiles * tileWidth) / 2
+
+print('number of tiles:', numberOfTiles)
+
+print('Gap at each end:', gap)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

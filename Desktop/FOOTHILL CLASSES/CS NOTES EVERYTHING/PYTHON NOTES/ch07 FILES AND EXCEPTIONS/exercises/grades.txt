@@ -1,0 +1,8 @@
+Luigi
+80 69 75
+Spiny
+85 89 92
+Gumby
+78 87 82
+Arthur
+89 94 91

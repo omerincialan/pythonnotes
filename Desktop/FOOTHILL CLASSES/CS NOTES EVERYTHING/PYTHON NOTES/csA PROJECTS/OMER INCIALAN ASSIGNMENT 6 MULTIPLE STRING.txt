@@ -1,0 +1,148 @@
+############### SOURCE ###########
+
+# Hello my name is Omer Incialan. I am writing a program that defines a class
+# called 'MultipleString'. This class has 3 instance attributes (string1, 
+# string2 and string3) and class constraints for min and max lenght of strings.
+# This class has a default constructor . The program creates four instances
+# of the class, displays their
+# initial state, mutates some members, performs explicit mutator tests, and 
+# demonstrates accessor calls.
+
+# This is the line we create the class
+class MultipleString:
+  
+    # We are defining class level constraints here
+    MIN_LEN = 1
+    MAX_LEN = 50
+    DEFAULT_STRING = "(undefined) "
+
+    # Here we are presenting Constructor to be called as default method
+    def __init__(self, string1=DEFAULT_STRING, string2=DEFAULT_STRING, string3=DEFAULT_STRING):
+        self.set_string1(string1)
+        self.set_string2(string2)
+        self.set_string3(string3)
+
+    # Mutator methods where I used the 'set' expression for assigning or changing
+    # attributes
+    def set_string1(self, new_string):
+        if self.valid_string(new_string):
+            self.string1 = new_string
+            return True
+        else:
+            return False
+
+    def set_string2(self, new_string2):
+        if self.valid_string(new_string2):
+            self.string2 = new_string2
+            return True
+        else:
+            return False
+
+    def set_string3(self, new_string3):
+        if self.valid_string(new_string3):
+            self.string3 = new_string3
+            return True
+        else:
+            return False
+
+    # Accessor ("get") methods to access the values assigned to each attribute
+    def get_string1(self):
+        return self.string1
+
+    def get_string2(self):
+        return self.string2
+
+    def get_string3(self):
+        return self.string3
+
+    # Helper method helps to control length requirement being met
+    # we benefit this method inside of set method to control constraints
+    def valid_string(self, the_str):
+        return self.MIN_LEN <= len(the_str) <= self.MAX_LEN
+
+    # We are creating another method for displaying objects.
+    # this will help us to track objects in a readable way.
+    # we could display each object with a separate line though.
+    def to_string(self):
+        return f"-> String1: {self.string1},     -> String2: {self.string2},    -> String3: {self.string3}"
+
+#### This is main part of the program where we perform the operations to check
+# if class carries out the object instantiation as intended, methods perform 
+# controls, mutations, access and manipulation asked in the assignment, 
+
+# Here I Create 4 MultipleString objects with first default string and 
+# with the random text I picked. (We Instantiate objects from MultipleString Class)
+multiple_string_num_1 = MultipleString()
+multiple_string_num_2 = MultipleString("This", "Is", "a")
+multiple_string_num_3 = MultipleString("Python", "class", "that")
+multiple_string_num_4 = MultipleString("teaches", "object oriented programming", "!")
+
+# Here we are looking at the display of all objects after instantiation
+print("Objects after instantiation:")
+print(multiple_string_num_1.to_string())
+print(multiple_string_num_2.to_string())
+print(multiple_string_num_3.to_string())
+print(multiple_string_num_4.to_string())
+
+# Here, we are mutate (Change - update) one member of every object with a different string
+multiple_string_num_1.set_string1("NewString1")
+multiple_string_num_2.set_string2("NewString2")
+multiple_string_num_3.set_string3("NewString3")
+multiple_string_num_4.set_string1("NewString4") # here we are using set_string1 method again
+
+# We Display all objects a second time after mutation with new values.
+print("\nObjects after mutation:")
+print(multiple_string_num_1.to_string())
+print(multiple_string_num_2.to_string())
+print(multiple_string_num_3.to_string())
+print(multiple_string_num_4.to_string())
+
+# Here, we test mutation of the program explicitly. 
+# We are printing the results of test.I did the test 3 times, for each scenario.
+# 1 success, 2 fail (too long, too short) 
+
+print("\nRESULT OF MUTATOR TESTS")
+if multiple_string_num_1.set_string2("ValidString"):
+    print("Mutator test 1: Successful")
+else:
+    print("\nMutator test 1: Failed")
+# Here we provide a string violating 50 < len < 1 limit and expect it to fail.
+# This part of the program should print "Failed!! Too Long and "Failed!! Too Short" 
+if multiple_string_num_2.set_string3("we.are.trying.totest.character.limit.there.are.more.than.50.characters.here"):
+    print("Mutator test 2: Successful")
+         
+else:
+    print("Mutator test 2: Failed!! Too Long")
+
+if multiple_string_num_2.set_string3(""):
+    print("Mutator test 3: Successful")
+         
+else:
+    print("Mutator test 3: Failed!! Too Short")
+
+# Here I am using accessor methods that we have defined in the class 
+# definition part of the program. 
+
+print(f"\nAccessor test 1: {multiple_string_num_3.get_string3()}")
+print(f"Accessor test 2: {multiple_string_num_4.get_string2()}")
+
+######### RUN ############
+
+-> String1: (undefined) ,     -> String2: (undefined) ,    -> String3: (undefined) 
+-> String1: This,     -> String2: Is,    -> String3: a
+-> String1: Python,     -> String2: class,    -> String3: that
+-> String1: teaches,     -> String2: object oriented programming,    -> String3: !
+
+Objects after mutation:
+-> String1: NewString1,     -> String2: (undefined) ,    -> String3: (undefined) 
+-> String1: This,     -> String2: NewString2,    -> String3: a
+-> String1: Python,     -> String2: class,    -> String3: NewString3
+-> String1: NewString4,     -> String2: object oriented programming,    -> String3: !
+
+RESULT OF MUTATOR TESTS
+Mutator test 1: Successful
+Mutator test 2: Failed!! Too Long
+Mutator test 3: Failed!! Too Short
+
+Accessor test 1: NewString3
+Accessor test 2: object oriented programming

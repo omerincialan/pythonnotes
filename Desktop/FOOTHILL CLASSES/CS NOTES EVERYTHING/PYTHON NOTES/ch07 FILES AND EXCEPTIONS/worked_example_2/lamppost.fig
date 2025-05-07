@@ -1,0 +1,14 @@
+# Lamp post scene
+300
+300
+blue
+# The grass area is a green rectangle.
+rect, 0, 250, dark green, dark green, 300, 50
+# The fixture is a yellow circle.
+oval, 112, 50, yellow, yellow, 75, 75
+# The lamp post is a rectangle with a big X for decoration.
+rect, 130, 120, black, gray, 40, 150
+line, 140, 140, red, 160, 160
+line, 140, 160, red, 160, 140
+# Text drawn at the bottom of the scene.
+text, 52, 285, white, Sample figure file, with 6 objects

@@ -1,0 +1,43 @@
+George Washington 189
+John Adams 170
+Thomas Jefferson 189
+James Madison 163
+James Monroe 183
+John Quincy Adams 171
+Andrew Jackson 185
+Martin Van Buren 168
+William Henry Harrison 173
+John Tyler 183
+James K. Polk 173
+Zachary Taylor 173
+Millard Fillmore 175
+Franklin Pierce 178
+James Buchanan 183
+Abraham Lincoln 193
+Andrew Johnson 178
+Ulysses S. Grant 173
+Rutherford B. Hayes 174
+James A. Garfield 183
+Chester A. Arthur 183
+Grover Cleveland 180
+Benjamin Harrison 168
+William McKinley 170
+Theodore Roosevelt 178
+William Howard Taft 182
+Woodrow Wilson 180
+Warren G. Harding 183
+Calvin Coolidge 178
+Herbert Hoover 182
+Franklin D. Roosevelt 188
+Harry S. Truman 175
+Dwight D. Eisenhower 179
+John F. Kennedy 183
+Lyndon B. Johnson 193
+Richard Nixon 182
+Gerald Ford 183
+Jimmy Carter 177
+Ronald Reagan 185
+George H. W. Bush 188
+Bill Clinton 188
+George W. Bush 182
+Barack Obama 185

@@ -1,0 +1,39 @@
+# ---------------- SOURCE ----------------------------------------
+
+print( "Hello Foothill College Students!\n" )
+print( "My family name is Incialan\n" )
+print( "My student ID is 20557589\n" )
+print( "I want to share 5 important point from the syllabus with you:\n" )
+print( "   1) Office hours will every Thursday 3-4 pm\n"
+       + "   2) For Lab Assignments, working together is a big NO NO!\n"
+       + "   3) Please narrow your questions to a level\n"
+       + "      where you can indicate that you actually tried hard!\n" 
+       + "   4) You can be dropped for missing a scheduled test \n" 
+       + "   5) Please\n" 
+       + "      * avoid jargon\n" 
+       + "      * use full sentences\n" 
+       + "      * be kind and respectfull to others\n" 
+       + "      \n" 
+       + "      ----- THANKS!! -----\n" )
+
+""" --------------- RUN -----------------
+
+Hello Foothill College Students!
+
+My family name is Incialan
+
+My student ID is 20557589
+
+I want to share 5 important point from the syllabus with you:
+
+   1) Office hours will every Thursday 3-4 pm
+   2) For Lab Assignments, working together is a big NO NO!
+   3) Please narrow your questions to a level
+      where you can indicate that you actually tried hard!
+   4) You can be dropped for missing a scheduled test 
+   5) Please
+      * avoid jargon
+      * use full sentences
+      * be kind and respectfull to others
+      
+      ----- THANKS!! -----

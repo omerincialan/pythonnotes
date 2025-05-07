@@ -1,0 +1,392 @@
+Testing IndexError for getter
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of empty board is ' '
+gb.get(0, 0) returns X
+X |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+gb.get(0, 1) returns X
+X | X |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+gb.get(0, 2) returns X
+X | X | X
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+
+winner of board with 1 row of X is 'X'
+gb.get(100, 100) correctly raises IndexError
+Testing for DRAW and index error on setter
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of empty board is ' '
+gb.get(0, 0) returns X
+X |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 1) returns O
+X |   |  
+--+---+-
+  | O |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 0) returns X
+X |   |  
+--+---+-
+  | O |  
+--+---+-
+X |   |  
+winner of board  is ' '
+gb.get(1, 1) returns O
+X |   |  
+--+---+-
+  | O |  
+--+---+-
+X |   |  
+gb.get(2, 1) returns X
+X |   |  
+--+---+-
+  | O |  
+--+---+-
+X | X |  
+gb.get(2, 2) returns O
+X |   |  
+--+---+-
+  | O |  
+--+---+-
+X | X | O
+gb.get(1, 2) returns X
+X |   |  
+--+---+-
+  | O | X
+--+---+-
+X | X | O
+gb.get(0, 2) returns O
+X |   | O
+--+---+-
+  | O | X
+--+---+-
+X | X | O
+gb.get(0, 1) returns X
+X | X | O
+--+---+-
+  | O | X
+--+---+-
+X | X | O
+gb.get(1, 0) returns O
+X | X | O
+--+---+-
+O | O | X
+--+---+-
+X | X | O
+
+winner of board is 'DRAW'
+gb.get(-3, 3, GameBoardPlayer.X) correctly raises IndexError
+Testing for DIAGONAL WIN
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of empty board is ' '
+gb.get(0, 0) returns X
+X |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 0) returns O
+X |   |  
+--+---+-
+O |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 1) returns X
+X |   |  
+--+---+-
+O | X |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 0) returns O
+X |   |  
+--+---+-
+O | X |  
+--+---+-
+O |   |  
+winner of board is ' '
+gb.get(2, 2) returns X
+X |   |  
+--+---+-
+O | X |  
+--+---+-
+O |   | X
+
+winner of board with 1 diagonal of X is 'X'
+Testing for ROW WIN
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of empty board is ' '
+gb.get(0, 1) returns X
+  | X |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 2) returns O
+  | X |  
+--+---+-
+  |   | O
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 0) returns X
+  | X |  
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 0) returns O
+  | X |  
+--+---+-
+O |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(0, 0) returns X
+X | X |  
+--+---+-
+O |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 2) returns O
+X | X |  
+--+---+-
+O |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(0, 2) returns X
+X | X | X
+--+---+-
+O |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   |  
+
+winner of board with 1 Row of X is 'X'
+Testing for Rectangular COLUMN WIN
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of empty board is ' '
+gb.get(0, 1) returns  
+  | X |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 2) returns O
+  | X |  
+--+---+-
+  |   | O
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 0) returns X
+  | X |  
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(0, 2) returns O
+  | X | O
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(0, 0) returns X
+X | X | O
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 2) returns O
+X | X | O
+--+---+-
+  |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 0) returns X
+X | X | O
+--+---+-
+X |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(3, 2) returns O
+X | X | O
+--+---+-
+X |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   | O
+
+winner of rectangular board with 1 Column of O is 'O'
+Testing for COLUMN WIN
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of empty board is ' '
+gb.get(0, 1) returns  
+  | X |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 2) returns O
+  | X |  
+--+---+-
+  |   | O
+--+---+-
+  |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 0) returns X
+  | X |  
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(0, 2) returns O
+  | X | O
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(0, 0) returns X
+X | X | O
+--+---+-
+  |   | O
+--+---+-
+X |   |  
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(2, 2) returns O
+X | X | O
+--+---+-
+  |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(1, 0) returns X
+X | X | O
+--+---+-
+X |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   |  
+winner of board is ' '
+gb.get(3, 2) returns O
+X | X | O
+--+---+-
+X |   | O
+--+---+-
+X |   | O
+--+---+-
+  |   | O
+
+winner of board with 1 Column of O is 'O'
+
+
+CHECK FOR BOARD GENERATION EXCEPTION
+
+File "/Users/omerincialan/Assignment 1 .py", line 537, in <module>
+    test_3x3_game_board_positivecheck(ArrayGameBoard(-3, 3))
+
+  File "/Users/omerincialan/Assignment 1 .py", line 41, in __init__
+    raise ValueError("Number of rows and columns must be greater than 0.")
+
+ValueError: Number of rows and columns must be greater than 0.

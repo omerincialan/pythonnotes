@@ -1,0 +1,673 @@
+######### SOURCE #######
+# Hello my name is Omer Incialan. In this program I simulate a slot machine. 
+# When user enters a bet amount, they initiate a pull, and receive results 
+# based on predefined criteria. Combinations like three cherries or three BARs yield winnings.
+# The game continues until the user decides to quit. It utilizes a helper class, 
+# functions for user input, pull simulation, and result determination.
+# After receiving a bet amount from the user as input, this program will do 
+# 2 main things. 
+# Based on certain conditions, program will pay back the bet amount by 
+# multiplying it or user will lose the entire bet amount.
+
+
+# We import build in libraries first.
+import random
+
+
+
+# First created a class to generate objects in the form of strings. 
+class MultipleString:
+    def __init__(self, string1, string2, string3):
+        # Initialize a MultipleString object with three strings
+        self.string1 = string1
+        self.string2 = string2
+        self.string3 = string3
+
+# Here we have this function to serve as both inout and output communicator.
+# We will use the valid input to calculate the payout amont in the times of wins
+# With a while loop we keep asking for bet until our user runs out of money
+# inside the loop, we check the validity of input character type and amount
+
+def get_bet():
+    
+    MIN_BET = 0
+    MAX_BET = 50
+    
+    while True:
+     bet_input = input("How much would you like to bet (1 - 50) or 0 to quit? ")
+     
+     if bet_input.isdigit():
+         bet = int(bet_input)
+         if MIN_BET <= bet <= MAX_BET:
+             return bet
+         else:
+             print("Please enter a bet between 1 and 50.")
+     else:
+         print("Invalid input. Please enter a number.")
+
+
+
+# This method instantiates and returns a MultipleString object to the client. 
+# The data of the MultipleString object will be filled with three randomly 
+# chosen strings according to the probabilities described in the "Understand 
+# the Application" section.
+
+def pull():
+    return MultipleString(rand_string(), rand_string(), rand_string())
+
+
+# This helper method is one of the core components of this slot machine. 
+# We are determining how often can a user win under what probability. We could leave some probabilistic
+# represantation completely out of reach and leave very very little chance of winning to user.
+# however in this program we define and use all of possible outcomes as requested by the assignment
+# We used random number generator built in function of python. we generate 
+# a "ramdom" number between 0 and 5000 and convert it to a probability percentage between 0 and 100.
+# the reason I sed "" for random above is, as far as I know this function is not completely random, but 
+# tries to avoid using recently picked numbers
+
+def rand_string():
+    
+    # WINNER WORDS
+    WORD1_CHERRY = "cherries"
+    WORD2_BAR = "BAR"
+    WORD3_SPACE = "space"
+    WORD4_7 = "7"
+    
+    # PROBABILITES
+    BAR_PERC_THRESHOLD = 45
+    CHERRIES_PERC_THRESHOLD = 85
+    SPACE_PERC_THRESHOLD = 90# PROBABILITES
+    BAR_PERC_THRESHOLD = 45
+    CHERRIES_PERC_THRESHOLD = 85
+    SPACE_PERC_THRESHOLD = 90
+    
+    # Helper function to generate a random string based on specified probabilities
+    rand_num = random.randrange(5000)
+    rand_percentage = (rand_num / 5000) * 100
+
+    # Assign strings based on probability ranges
+    if rand_percentage < BAR_PERC_THRESHOLD:
+        return WORD2_BAR
+    elif rand_percentage < CHERRIES_PERC_THRESHOLD:
+        return WORD1_CHERRY
+    elif rand_percentage < SPACE_PERC_THRESHOLD:
+        return WORD3_SPACE
+    else:
+        return WORD4_7
+
+# After main gets a MultipleString object from pull() we define what the payout
+# will be here. That's the job of this function, get_pay_multiplier(), which 
+# takes the MultipleString result from pull() (the_pull) as a parameter and 
+# inspects it to determine what its pay multiplier should be:  5?  15?  100?  0?
+
+def get_pay_multiplier(the_pull):
+    
+    # WINNER WORDS
+    WORD1_CHERRY = "cherries"
+    WORD2_BAR = "BAR"
+    WORD3_SPACE = "space"
+    WORD4_7 = "7"
+    
+    # PAYOUT MULTIPLIERS
+    FULL_CHERRY_WIN_PAYOUT = 30
+    BAR_WIN_PAYOUT = 50
+    PAYOUT_FOR_7_WINNER = 100
+    SPACE_WIN_PAYOUT = 1000 # This was not in the assignment I added
+    BIG_CHERRY_WIN_PAYOUT = 15
+    SMALL_CHERRY_WIN_PAYOUT = 5
+    LOSING_AMOUNT = 0
+    
+    # Determine the pay multiplier based on the outcome of the pull
+    symbols = [the_pull.string1, the_pull.string2, the_pull.string3]
+    if symbols == [WORD1_CHERRY, WORD1_CHERRY, WORD1_CHERRY]:
+        return FULL_CHERRY_WIN_PAYOUT
+    elif symbols == [WORD2_BAR, WORD2_BAR, WORD2_BAR]:
+        return BAR_WIN_PAYOUT
+    elif symbols == [WORD4_7, WORD4_7, WORD4_7]:
+        return PAYOUT_FOR_7_WINNER
+    elif symbols == [WORD3_SPACE, WORD3_SPACE, WORD3_SPACE]:
+        return SPACE_WIN_PAYOUT
+    elif symbols[0] == WORD1_CHERRY and symbols[1] == WORD1_CHERRY and symbols[2] != WORD1_CHERRY:
+        return BIG_CHERRY_WIN_PAYOUT
+    elif symbols[0] == WORD1_CHERRY and symbols[1] != WORD1_CHERRY:
+        return SMALL_CHERRY_WIN_PAYOUT
+    else:
+        return LOSING_AMOUNT
+
+# This method takes the winnings (a dollar amount) and the_pull as parameters 
+# displays the final result to user
+def display(the_pull, winnings):
+   
+    print("\n$$$ LET'S MAKE SOME MONEY  $$$ \n")
+    print(f"whirrr .... and your pull is ... \n\n {the_pull.string1} ,  {the_pull.string2} ,  {the_pull.string3}")
+
+    if winnings == 0:
+        print("\nSorry, you lose.")
+    else:
+        print(f"\nCongratulations, you won: $ {winnings} $ .")
+        print("It's your lucky day, KEEP PLAYING and WIN MORE.")
+
+def main():
+    # Main game loop
+    while True:
+        bet = get_bet()
+
+        if bet == 0:
+            print("Thanks for coming to Casino MONTE CARLO")
+            print("PLEASE COME BACK AGAIN")
+            break
+
+        the_pull = pull()
+        display(the_pull, get_pay_multiplier(the_pull) * bet)
+
+
+if __name__ == "__main__":
+    main()
+
+########## RUN ############
+
+# As a note at the beginning:
+I had all cherries on #50
+I had all BARs on #11, #13, #18, #36, #45
+
+#RUN -->
+
+How much would you like to bet (1 - 50) or 0 to quit? 1
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ space ,  BAR ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 2
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  space
+
+Congratulations, you won: $ 10 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 3
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  cherries ,  BAR
+
+Congratulations, you won: $ 45 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 4
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ space ,  cherries ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 5
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ 7 ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 6
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 7
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  cherries
+
+Congratulations, you won: $ 35 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 8
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  space ,  cherries
+
+Congratulations, you won: $ 40 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 9
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 10
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ 7 ,  BAR ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? I don t wanna play anymore
+Invalid input. Please enter a number.
+How much would you like to bet (1 - 50) or 0 to quit? I want to quit
+Invalid input. Please enter a number.
+How much would you like to bet (1 - 50) or 0 to quit? I bet 10
+Invalid input. Please enter a number.
+How much would you like to bet (1 - 50) or 0 to quit? I 100
+Invalid input. Please enter a number.
+How much would you like to bet (1 - 50) or 0 to quit? -5
+Invalid input. Please enter a number.
+How much would you like to bet (1 - 50) or 0 to quit? 11
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  BAR
+
+Congratulations, you won: $ 550 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 12
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ space ,  space ,  7
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 13
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  BAR
+
+Congratulations, you won: $ 650 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 14
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  cherries ,  BAR
+
+Congratulations, you won: $ 210 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 15
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ space ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 16
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 17
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 18
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  BAR
+
+Congratulations, you won: $ 900 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 19
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  space
+
+Congratulations, you won: $ 95 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 20
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  7 ,  BAR
+
+Congratulations, you won: $ 100 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 21
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  cherries ,  BAR
+
+Congratulations, you won: $ 315 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 22
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  BAR
+
+Congratulations, you won: $ 110 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 23
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  space
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 24
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  cherries
+
+Congratulations, you won: $ 120 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 25
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  cherries ,  BAR
+
+Congratulations, you won: $ 375 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 26
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ 7 ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 27
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ 7 ,  BAR ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 28
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 29
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  7 ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 30
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  cherries
+
+Congratulations, you won: $ 150 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 31
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  cherries ,  BAR
+
+Congratulations, you won: $ 465 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 32
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  BAR
+
+Congratulations, you won: $ 160 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 33
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 34
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 35
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  7 ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 36
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  BAR
+
+Congratulations, you won: $ 1800 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 37
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  7 ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 38
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 39
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  cherries
+
+Congratulations, you won: $ 195 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 40
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ 7 ,  7 ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 41
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  BAR
+
+Congratulations, you won: $ 205 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 42
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ 7 ,  BAR ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 43
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  BAR ,  BAR
+
+Congratulations, you won: $ 215 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 44
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 45
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  BAR
+
+Congratulations, you won: $ 2250 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 46
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  BAR ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 47
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  7 ,  cherries
+
+Congratulations, you won: $ 235 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 48
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  cherries
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 49
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  cherries ,  BAR
+
+Sorry, you lose.
+How much would you like to bet (1 - 50) or 0 to quit? 50
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ cherries ,  cherries ,  cherries
+
+Congratulations, you won: $ 1500 $ .
+It's your lucky day, KEEP PLAYING and WIN MORE.
+How much would you like to bet (1 - 50) or 0 to quit? 51
+Please enter a bet between 1 and 50.
+How much would you like to bet (1 - 50) or 0 to quit? 20
+
+$$$ LET'S MAKE SOME MONEY  $$$ 
+
+whirrr .... and your pull is ... 
+
+ BAR ,  7 ,  BAR
+
+Sorry, you lose.
+
+How much would you like to bet (1 - 50) or 0 to quit? 0
+Thanks for coming to Casino MONTE CARLO
+PLEASE COME BACK AGAIN

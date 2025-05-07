@@ -1,0 +1,312 @@
+########### SOURCE. ###########
+
+import sys
+
+# food #1 intended constants
+FOOD_1_NAME = "a huge baguette bread"
+FOOD_1_CALORIES_P100G = 250  # in calories
+FOOD_1_SOL_FIBER_P100G = 2   # in grams
+FOOD_1_FAT_P100G = 2 # in grams
+FOOD_1_PROT_P100G = 9 # in grams
+FOOD_1_CARB_P100G = 52 # in grams
+
+# food #2 intended constants
+FOOD_2_NAME = "italian salami"
+FOOD_2_CALORIES_P100G = 370  # in calories
+FOOD_2_SOL_FIBER_P100G = 0   # in grams
+FOOD_2_FAT_P100G = 31 # in grams
+FOOD_2_PROT_P100G = 21 # in grams
+FOOD_2_CARB_P100G = 1 # in grams
+
+# food #3 intended constants
+FOOD_3_NAME = "pesto sauce"
+FOOD_3_CALORIES_P100G = 420  # in calories
+FOOD_3_SOL_FIBER_P100G = 2   # in grams
+FOOD_3_FAT_P100G = 39 # in grams
+FOOD_3_PROT_P100G = 10 # in grams
+FOOD_3_CARB_P100G = 10 # in grams
+
+# food #4 intended constants
+FOOD_4_NAME = "fresh mozzerella"
+FOOD_4_CALORIES_P100G = 249  # in calories
+FOOD_4_SOL_FIBER_P100G = 0   # in grams
+FOOD_4_FAT_P100G = 19 # in grams
+FOOD_4_PROT_P100G = 19 # in grams
+FOOD_4_CARB_P100G = 2 # in grams
+
+# food #5 intended constants
+FOOD_5_NAME = "dried tomatos"
+FOOD_5_CALORIES_P100G = 260  # in calories
+FOOD_5_SOL_FIBER_P100G = 13   # in grams
+FOOD_5_FAT_P100G = 3 # in grams
+FOOD_5_PROT_P100G = 14 # in grams
+FOOD_5_CARB_P100G = 55 # in grams
+
+
+
+INDENT = "   "
+
+# initialize accumulator variables
+total_sol_fiber = 0.
+total_cals = 0
+total_fat = 0
+total_protein = 0
+total_carbohdrate = 0
+
+# Defining the amount of ingredients threshold
+min_grams = 0 # minimum amount of food that can be added to recipe
+max_grams = 1100 # maximum amount of food that can be added to recipe
+
+# print menu
+print( "---------- List of Possible Ingredients ---------" )
+print( INDENT + "Food #1: " + FOOD_1_NAME )
+print( INDENT + "Food #2: " + FOOD_2_NAME )
+print( INDENT + "Food #3: " + FOOD_3_NAME )
+print( INDENT + "Food #4: " + FOOD_4_NAME )
+print( INDENT + "Food #5: " + FOOD_5_NAME + "\n" )
+
+# name of recipe
+recipe_name = input("What are you calling this recipe? ")
+
+min_serving = 1
+max_serving = 11
+
+# number of serving
+num_serving = int(input("Number of Serving? "))
+if num_serving < min_serving or num_serving > max_serving :
+    print("Error: Number of servings can't be less than 1 and more than 11\n PROGRAM STOPPED")
+    sys.exit()  # Exit the program due to the error
+
+
+# food #1 ---------------------------------------------------------
+user_input_int = int(input("How many grams of " + FOOD_1_NAME + "? "))
+if user_input_int < min_grams or user_input_int > max_grams :
+    print("Error: Amount of ingredient can't be less than 0 gram and more than 1100 grams\n PROGRAM STOPPED")
+    sys.exit()  # Exit the program due to the error
+
+
+   
+# update accumulators
+total_cals += (user_input_int * (FOOD_1_CALORIES_P100G / 100.)) / num_serving
+total_sol_fiber += (user_input_int * (FOOD_1_SOL_FIBER_P100G / 100.)) / num_serving
+total_fat += (user_input_int * (FOOD_1_FAT_P100G / 100.)) / num_serving
+total_protein += (user_input_int * (FOOD_1_PROT_P100G / 100.)) / num_serving
+total_carbohdrate += (user_input_int * (FOOD_1_CARB_P100G / 100.)) / num_serving
+
+# food #2 ---------------------------------------------------------
+user_input_int = int(input("How many grams of " + FOOD_2_NAME + "? "))
+if user_input_int < min_grams or user_input_int > max_grams :
+    print("Error: Amount of ingredient can't be less than 0 gram and more than 1100 grams\n PROGRAM STOPPED")
+    sys.exit()  # Exit the program due to the error
+
+# update accumulators
+total_cals += (user_input_int * (FOOD_2_CALORIES_P100G / 100.)) / num_serving
+total_sol_fiber += (user_input_int * (FOOD_2_SOL_FIBER_P100G / 100.)) / num_serving
+total_fat += (user_input_int * (FOOD_2_FAT_P100G / 100.)) / num_serving
+total_protein += (user_input_int * (FOOD_2_PROT_P100G / 100.)) / num_serving
+total_carbohdrate += (user_input_int * (FOOD_2_CARB_P100G / 100.)) / num_serving
+
+# food #3 ---------------------------------------------------------
+user_input_int = int(input("How many grams of " + FOOD_3_NAME + "? "))
+if user_input_int < min_grams or user_input_int > max_grams :
+    print("Error: Amount of ingredient can't be less than 0 gram and more than 1100 grams\n PROGRAM STOPPED")
+    sys.exit()  # Exit the program due to the error
+
+# update accumulators
+total_cals += (user_input_int * (FOOD_3_CALORIES_P100G / 100.)) / num_serving
+total_sol_fiber += (user_input_int * (FOOD_3_SOL_FIBER_P100G / 100.)) / num_serving
+total_fat += (user_input_int * (FOOD_3_FAT_P100G / 100.)) / num_serving
+total_protein += (user_input_int * (FOOD_3_PROT_P100G / 100.)) / num_serving
+total_carbohdrate += (user_input_int * (FOOD_3_CARB_P100G / 100.)) / num_serving
+
+# food 4 ---------------------------------------------------------
+user_input_int = int(input("How many grams of " + FOOD_4_NAME + "? "))
+if user_input_int < min_grams or user_input_int > max_grams :
+    print("Error: Amount of ingredient can't be less than 0 gram and more than 1100 grams\n PROGRAM STOPPED")
+    sys.exit()  # Exit the program due to the error
+
+# update accumulators
+total_cals += (user_input_int * (FOOD_4_CALORIES_P100G / 100.)) / num_serving
+total_sol_fiber += (user_input_int * (FOOD_4_SOL_FIBER_P100G / 100.)) / num_serving
+total_fat += (user_input_int * (FOOD_4_FAT_P100G / 100.)) / num_serving
+total_protein += (user_input_int * (FOOD_4_PROT_P100G / 100.)) / num_serving
+total_carbohdrate += (user_input_int * (FOOD_4_CARB_P100G / 100.)) / num_serving
+
+# food #5 ---------------------------------------------------------
+user_input_int = int(input("How many grams of " + FOOD_5_NAME + "? "))
+if user_input_int < min_grams or user_input_int > max_grams :
+    print("Error: Amount of ingredient can't be less than 0 gram and more than 1100 grams \n PROGRAM STOPPED")
+    sys.exit()  # Exit the program due to the error
+
+# update accumulators
+total_cals += (user_input_int * (FOOD_5_CALORIES_P100G / 100.)) / num_serving
+total_sol_fiber += (user_input_int * (FOOD_5_SOL_FIBER_P100G / 100.)) / num_serving
+total_fat += (user_input_int * (FOOD_5_FAT_P100G / 100.)) / num_serving
+total_protein += (user_input_int * (FOOD_5_PROT_P100G / 100.)) / num_serving
+total_carbohdrate += (user_input_int * (FOOD_5_CARB_P100G / 100.)) / num_serving
+
+
+print(' \n.....computing.......')
+
+# report results --------------------------------------------------
+print( "\nNutritional value per serving for " + recipe_name + ':\n')
+print( INDENT + "Calories: " + str(total_cals) + '\n')
+print( INDENT + "Soluble Fiber: " + str(total_sol_fiber) + " grams\n" )
+print( INDENT + "Total Fat: " + str(total_fat) + " grams\n" )
+print( INDENT + "Total Protein: " + str(total_protein) + " grams\n" )
+print( INDENT + "Total Carbohydrate: " + str(total_carbohdrate) + " grams\n" )
+print()
+
+######## RUN 1 ##########
+
+---------- List of Possible Ingredients ---------
+   Food #1: a huge baguette bread
+   Food #2: italian salami
+   Food #3: pesto sauce
+   Food #4: fresh mozzerella
+   Food #5: dried tomatos
+
+What are you calling this recipe? Omer's Deli 1
+Number of Serving? 4
+How many grams of a huge baguette bread? 800
+How many grams of italian salami? 400
+How many grams of pesto sauce? 100
+How many grams of fresh mozzerella? 300
+How many grams of dried tomatos? 200
+ 
+.....computing.......
+
+Nutritional value per serving for Omer's Deli 1:
+
+   Calories: 1291.75
+
+   Soluble Fiber: 11.0 grams
+
+   Total Fat: 60.5 grams
+
+   Total Protein: 62.75 grams
+
+   Total Carbohydrate: 136.5 grams
+
+
+####### RUN 2 ###########
+
+---------- List of Possible Ingredients ---------
+   Food #1: a huge baguette bread
+   Food #2: italian salami
+   Food #3: pesto sauce
+   Food #4: fresh mozzerella
+   Food #5: dried tomatos
+
+What are you calling this recipe? Omer's Deli 2
+Number of Serving? 2
+How many grams of a huge baguette bread? 400
+How many grams of italian salami? 200
+How many grams of pesto sauce? 50
+How many grams of fresh mozzerella? 150
+How many grams of dried tomatos? 100
+ 
+.....computing.......
+
+Nutritional value per serving for Omer's Deli 2:
+
+   Calories: 1291.75
+
+   Soluble Fiber: 11.0 grams
+
+   Total Fat: 60.5 grams
+
+   Total Protein: 62.75 grams
+
+   Total Carbohydrate: 136.5 grams
+
+####### RUN 3 (BIG PORTION) ###########
+
+---------- List of Possible Ingredients ---------
+   Food #1: a huge baguette bread
+   Food #2: italian salami
+   Food #3: pesto sauce
+   Food #4: fresh mozzerella
+   Food #5: dried tomatos
+
+What are you calling this recipe? Omer's Deli for very hungry people
+Number of Serving? 2
+How many grams of a huge baguette bread? 600
+How many grams of italian salami? 350
+How many grams of pesto sauce? 80
+How many grams of fresh mozzerella? 250
+How many grams of dried tomatos? 180
+ 
+.....computing.......
+
+Nutritional value per serving for Omer's Deli for very hungry people:
+
+   Calories: 2110.75
+
+   Soluble Fiber: 18.5 grams
+
+   Total Fat: 102.3 grams
+
+   Total Protein: 104.1 grams
+
+   Total Carbohydrate: 213.75 grams
+
+####### RUN 4 (CATERING) ############
+
+---------- List of Possible Ingredients ---------
+   Food #1: a huge baguette bread
+   Food #2: italian salami
+   Food #3: pesto sauce
+   Food #4: fresh mozzerella
+   Food #5: dried tomatos
+
+What are you calling this recipe? Omer's Sandwich Party
+Number of Serving? 11
+How many grams of a huge baguette bread? 1100
+How many grams of italian salami? 1100
+How many grams of pesto sauce? 500
+How many grams of fresh mozzerella? 1100
+How many grams of dried tomatos? 1100
+ 
+.....computing.......
+
+Nutritional value per serving for Omer's Sandwich Party:
+
+   Calories: 1319.909090909091
+
+   Soluble Fiber: 15.90909090909091 grams
+
+   Total Fat: 72.72727272727272 grams
+
+   Total Protein: 67.54545454545455 grams
+
+   Total Carbohydrate: 114.54545454545455 grams
+
+####### RUN 5 (WITH THE ERROR on SERVING SIZE AND INGREDIENT AMOUNT) ########
+---------- List of Possible Ingredients ---------
+   Food #1: a huge baguette bread
+   Food #2: italian salami
+   Food #3: pesto sauce
+   Food #4: fresh mozzerella
+   Food #5: dried tomatos
+
+What are you calling this recipe? Omer's Extreme Deli
+Number of Serving? 4
+How many grams of a huge baguette bread? 1100
+How many grams of italian salami? 2000
+Error: Amount of ingredient can't be less than 0 gram and more than 1100 grams
+ PROGRAM STOPPED
+
+---------- List of Possible Ingredients ---------
+   Food #1: a huge baguette bread
+   Food #2: italian salami
+   Food #3: pesto sauce
+   Food #4: fresh mozzerella
+   Food #5: dried tomatos
+
+What are you calling this recipe? Omer's New Deli
+Number of Serving? 15
+Error: Number of servings can't be less than 1 and more than 11
+ PROGRAM STOPPED
+
+

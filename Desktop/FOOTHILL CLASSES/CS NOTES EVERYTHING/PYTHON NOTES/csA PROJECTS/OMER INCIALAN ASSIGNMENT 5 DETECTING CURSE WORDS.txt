@@ -1,0 +1,174 @@
+######### SOURCE ###########
+
+# Hello, my name is Omer Incialan. I will write a program that takes a character
+# as key and a phrase/sentence as a text to be checked and formatted. Based on 
+# the key provided, program will (i) mask the key character when detected 
+# (ii) remove the key character when detected,(iii) count the number of 
+# occurance in the provided phrase or sentence. 
+# (By extending this program inappropriate/racist words can be detected and prevented 
+# from being entered)
+
+# Defining and controlling minimum and maximum number of characters for input
+MIN_STR_LEN = 6
+MAX_STR_LEN = 500
+
+
+# Defining the input functions
+def get_key_character():
+    while True:
+        #this is where we store key character input provided by the user
+        key_char = input("Please enter a SINGLE character to act as key: ")
+        if len(key_char) == 1:
+            return key_char # this is where we provide input as output of 
+        # this function. We will use this as a control tool in following lines
+        else:
+            print("ERROR: Please make sure that you enter a SINGLE CHARACTER as key ")
+            
+def get_string():
+    while True:
+        # this is where we receive input phrase 
+        user_string = input(f"Please enter a phrase or sentence >= {MIN_STR_LEN} and <= {MAX_STR_LEN} characters  ")
+        if MIN_STR_LEN <= len(user_string) <= MAX_STR_LEN:
+            return user_string # this is where we store user phrase input and provide it as  
+                            # output of this function to be used for further processing
+        else:
+            print(f"ERROR Please make sure that length of entry is between {MIN_STR_LEN} and {MAX_STR_LEN}")
+            
+# This part is to execute masking, removing and counting operations.
+# here we are defining the masking function.
+def mask_character(the_string, key_character):
+    new_string = "" # we create an empty variable as an anchor
+    for char in the_string: # this is where we loop through each characters of the provided phrase
+        if char == key_character: # we are looking for matching characters with key character provided by the user
+            new_string += '*' # this is where we replace (mask) the key character 
+        else: # if the character does not match with key, we leave it as is
+            new_string += char 
+    return new_string
+
+# here we are defining removing functions
+def remove_character(the_string, key_character):
+    new_string = "" #empty anchor variable
+    for char in the_string: # loop through each character of input phrase
+        if char != key_character: # search for non-matching characters
+            new_string += char # create a new variable consists of non-matching characters
+    return new_string # we are providing a removed version of the_string
+
+# here we are defining the counting function
+def count_key(the_string, key_character):
+    count = 0
+    for char in the_string: # iterating over each character in phrase of user
+        if char == key_character: # assessing matches
+            count += 1 # counting
+    return count # we are returning the total # of key character
+
+### MAIN PROGRAM
+# So far we mostly defined functions and defined processes operations over 
+# the possible inputs, however we did not interact with the user and receive their input
+
+
+# this is where we ask their key character and phrase/sentence/paragraph to be processed
+key_char = get_key_character()
+user_str = get_string()
+
+# This is where we process their input
+# We pass the input key_char and user_str to the function mask_character
+# We assign output of Function mask_character to variable masked_str
+masked_str = mask_character(user_str, key_char)
+# We assign output of Function remove_character to variable removed_str
+removed_str = remove_character(user_str, key_char)
+# We assign output of Function count_key to variable key_count
+key_count = count_key(user_str, key_char)
+
+# This is the final step of the program where we display results.
+print(f"\nString with key character, '{key_char}', masked:")
+print(f"    '{masked_str}'")
+
+print(f"\nString with, '{key_char}', removed:")
+print(f"    '{removed_str}'")
+
+print(f"\n# of occurrences of key character, '{key_char}': {key_count}")
+
+
+######### RUN 1 ###########
+
+Please enter a SINGLE character to act as key: u
+Please enter a phrase or sentence >= 6 and <= 500 characters  this could be a message in a chat room or multi player online game in which children are present. If we successfully deploy such control systems all around internet, we could protect kids from being verbally abused or cyber bullied a little more. 
+
+String with key character, 'u', masked:
+    'this co*ld be a message in a chat room or m*lti player online game in which children are present. If we s*ccessf*lly deploy s*ch control systems all aro*nd internet, we co*ld protect kids from being verbally ab*sed or cyber b*llied a little more. '
+
+String with, 'u', removed:
+    'this cold be a message in a chat room or mlti player online game in which children are present. If we sccessflly deploy sch control systems all arond internet, we cold protect kids from being verbally absed or cyber bllied a little more. '
+
+# of occurrences of key character, 'u': 9
+
+
+
+########## RUN 2 ###########
+
+Please enter a SINGLE character to act as key: 1
+Please enter a phrase or sentence >= 6 and <= 500 characters  12345678 "I DON’T BELIEVE IT!!!!!!!!!!11111" "OMG!!!!!1!1!!!{`{`{`$#+%{&#")" “U GUVERNMANT BRAYNWOSHT THOSE R CHEMTRAYLZ1!1!1!1!!”
+
+String with key character, '1', masked:
+    '*2345678 "I DON’T BELIEVE IT!!!!!!!!!!*****" "OMG!!!!!*!*!!!{`{`{`$#+%{&#")" “U GUVERNMANT BRAYNWOSHT THOSE R CHEMTRAYLZ*!*!*!*!!”'
+
+String with, '1', removed:
+    '2345678 "I DON’T BELIEVE IT!!!!!!!!!!" "OMG!!!!!!!!!{`{`{`$#+%{&#")" “U GUVERNMANT BRAYNWOSHT THOSE R CHEMTRAYLZ!!!!!”'
+
+# of occurrences of key character, '1': 12
+
+######### RUN 3 #########
+
+Please enter a SINGLE character to act as key: c
+Please enter a phrase or sentence >= 6 and <= 500 characters  he income of a typical homebuyer in the United States surged to $107,000 from $88,000 last year, as home affordability precipitously worsened, according to an annual report from the National Association of Realtors.
+
+String with key character, 'c', masked:
+    'he in*ome of a typi*al homebuyer in the United States surged to $107,000 from $88,000 last year, as home affordability pre*ipitously worsened, a**ording to an annual report from the National Asso*iation of Realtors.'
+
+String with, 'c', removed:
+    'he inome of a typial homebuyer in the United States surged to $107,000 from $88,000 last year, as home affordability preipitously worsened, aording to an annual report from the National Assoiation of Realtors.'
+
+# of occurrences of key character, 'c': 6
+
+######## RUN 4 #########
+
+Please enter a SINGLE character to act as key: test
+ERROR: Please make sure that you enter a SINGLE CHARACTER as key 
+Please enter a SINGLE character to act as key: single char
+ERROR: Please make sure that you enter a SINGLE CHARACTER as key 
+Please enter a SINGLE character to act as key: 1 a
+ERROR: Please make sure that you enter a SINGLE CHARACTER as key 
+Please enter a SINGLE character to act as key:   
+ERROR: Please make sure that you enter a SINGLE CHARACTER as key 
+Please enter a SINGLE character to act as key: ee
+ERROR: Please make sure that you enter a SINGLE CHARACTER as key 
+Please enter a SINGLE character to act as key: @@
+ERROR: Please make sure that you enter a SINGLE CHARACTER as key 
+Please enter a SINGLE character to act as key: s
+Please enter a phrase or sentence >= 6 and <= 500 characters  I looked for a very long text to test a scenerio in this program. I visited a website called project syndicate (I used to follow international news there) I was going to copy and paste an article published there, unfortunately, they have a pay wall too. To be able read, you need to be a subscriber. Nowadays, pay walls are every where. I hate that. There are so many good resources, when I search something to read and think that I found a good article about it I get excited, click and boom!! "you have to subsribe" I honestly hate it. I wanted to share it here. Thanks for listening. One last thing, I already counted the characters of this paragraph this entry will not go through')
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  my 
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  prev
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  ious
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  entry
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  was
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  too
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  short
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  looked for a very long text to test a scenerio in this program. I visited a website called project syndicate (I used to follow international news there) I was going to copy and paste an article published there, unfortunately, they have a pay wall too. To be able read, you need to be a subscriber. Nowadays, pay walls are every where. I hate that. There are so many good resources, when I search something to read and think that I found a good article about it I get excited, click and boom!! "you have to subsribe" I honestly hate it.
+ERROR Please make sure that length of entry is between 6 and 500
+Please enter a phrase or sentence >= 6 and <= 500 characters  I visited a website called project syndicate (I used to follow international news there) I was going to copy and paste an article published there, unfortunately, they have a pay wall too. To be able read, you need to be a subscriber. Nowadays, pay walls are every where. I hate that. There are so many good resources, when I search something to read and think that I found a good article about it I get excited, click and boom!! "you have to subsribe" I honestly hate it.
+
+String with key character, 's', masked:
+    'I vi*ited a web*ite called project *yndicate (I u*ed to follow international new* there) I wa* going to copy and pa*te an article publi*hed there, unfortunately, they have a pay wall too. To be able read, you need to be a *ub*criber. Nowaday*, pay wall* are every where. I hate that. There are *o many good re*ource*, when I *earch *omething to read and think that I found a good article about it I get excited, click and boom!! "you have to *ub*ribe" I hone*tly hate it.'
+
+String with, 's', removed:
+    'I viited a webite called project yndicate (I ued to follow international new there) I wa going to copy and pate an article publihed there, unfortunately, they have a pay wall too. To be able read, you need to be a ubcriber. Nowaday, pay wall are every where. I hate that. There are o many good reource, when I earch omething to read and think that I found a good article about it I get excited, click and boom!! "you have to ubribe" I honetly hate it.'
+
+# of occurrences of key character, 's': 20

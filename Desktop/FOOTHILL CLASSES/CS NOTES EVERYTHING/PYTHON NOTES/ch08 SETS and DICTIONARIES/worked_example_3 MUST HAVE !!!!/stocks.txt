@@ -1,0 +1,10 @@
+PETS small 8250.0
+BBY mid 6535.0
+NVDA mid 5500.0
+LXK mid 2825.0
+LOW large 5800.0
+COP large 9745.0
+TGT large 6200.0
+VZ large 12185.0
+bonds misc 18500.0
+cash cash 10000.0

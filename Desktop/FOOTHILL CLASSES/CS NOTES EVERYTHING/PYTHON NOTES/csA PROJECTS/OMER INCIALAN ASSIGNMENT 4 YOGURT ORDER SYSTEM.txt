@@ -1,0 +1,242 @@
+######## SOURCE #############
+
+
+
+### Hello my name is OMER INCIALAN. 
+### This is a program to interact with customers buying yogurt. For each yogurt they 
+### buy, program will add 1 point to customer's balance. When customer has points (Stamps) 
+### equal to  or more than a certain number (12, in this case), 
+### customer will be presented the option to use points they have for a free yogurt.
+### I used an infinite while loop with three parts. The first part is for Purchase, 
+### The second part is for Shut down, and the one for reminding valid entry options.
+
+FREE_YOG_NUM = 12 # The number of stamps required to win a free yogurt
+num_stamps = 0 # Initialize customer's stamp balance
+
+# Main (Infinite) Loop
+while True:
+    # Menu
+    print("Menu:")
+    print("  P (Process Purchase)")
+    print("  S (Shut down)")
+
+    # Customer Action (converting each input into lowercase)
+    user_choice = input("\nYour Choice: ").lower()
+
+    # Process Purchase
+    #This is the first part of the main loop structure
+    if user_choice.startswith('p'):
+        num_yogurts_input = int(input("How many yogurts do you want? "))
+        
+        # Check if the input can be converted to an integer and if it's greater than 0
+        if num_yogurts_input > 0:
+            num_yogurts = num_yogurts_input
+            num_stamps += num_yogurts # Track and keep the number of stamps earned
+            
+            # Display number of stamps earned at the current transaction and total stamps earned so far
+            print(f"ENJOY YOUR YOGURTS!!! \nYou just earned {num_yogurts} stamps and have a total of {num_stamps} to use.\n")
+            
+            # Check if the customer qualifies for a free yogurt
+            if num_stamps >= FREE_YOG_NUM:
+                print('CONGRATULATIONS!!! You qualify for a free yogurt.')
+                print('Remember every 12 points qualify for a free yogurt :)')
+                # Award Processing Transaction
+                award_choice = input("Would you like to use your credits? (Y or N) ").lower()
+                if award_choice.startswith('y'):
+                    # Calculation and informing the customer about existing stamps for a free yogurt
+                    num_stamps -= FREE_YOG_NUM
+                    print("Enjoy your free yogurt!")
+                    print(f"You now have {num_stamps} stamps remaining.\n")
+                elif award_choice.startswith('n'):
+                    print("*** Thank you for shopping with us \n see you next time! ***\n")
+                else:
+                    print("*** Invalid choice. Please enter Y or N. ***\n")
+        else:
+            print("*** Invalid entry. Please enter a valid positive number. ***\n")
+
+    # Shut down the order management and award processing system
+    # This is the second part of the main loop structure.
+    elif user_choice.startswith('s'):
+        print("Shutting down the system. Goodbye!")
+        break
+
+    #Invalid choice 
+    #This is the 3rd part of main loop structure, when user performs an ionvalid entry
+    else:
+        print("*** Invalid Entry. Press P or S, please. ***\n")
+
+
+####### RUN 1 ###########
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: PINK
+How many yogurts do you want? 4
+ENJOY YOUR YOGURTS!!! 
+You just earned 4 stamps and have a total of 4 to use.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: pink
+How many yogurts do you want? 4
+ENJOY YOUR YOGURTS!!! 
+You just earned 4 stamps and have a total of 8 to use.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: quick
+*** Invalid Entry. Press P or S, please. ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: PLUS
+How many yogurts do you want? 4
+ENJOY YOUR YOGURTS!!! 
+You just earned 4 stamps and have a total of 12 to use.
+
+CONGRATULATIONS!!! You qualify for a free yogurt.
+Remember every 12 points qualify for a free yogurt :)
+Would you like to use your credits? (Y or N) no
+*** Thank you for shopping with us 
+ see you next time! ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: please
+How many yogurts do you want? 1
+ENJOY YOUR YOGURTS!!! 
+You just earned 1 stamps and have a total of 13 to use.
+
+CONGRATULATIONS!!! You qualify for a free yogurt.
+Remember every 12 points qualify for a free yogurt :)
+Would you like to use your credits? (Y or N) yes
+Enjoy your free yogurt!
+You now have 1 stamps remaining.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: P
+How many yogurts do you want? 20
+ENJOY YOUR YOGURTS!!! 
+You just earned 20 stamps and have a total of 21 to use.
+
+CONGRATULATIONS!!! You qualify for a free yogurt.
+Remember every 12 points qualify for a free yogurt :)
+Would you like to use your credits? (Y or N) huh?
+*** Invalid choice. Please enter Y or N. ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: s
+Shutting down the system. Goodbye!
+
+
+########## RUN 2 ############
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: PTEST
+How many yogurts do you want? 3
+ENJOY YOUR YOGURTS!!! 
+You just earned 3 stamps and have a total of 3 to use.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: letter p 
+*** Invalid Entry. Press P or S, please. ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: P p p PP
+How many yogurts do you want? 5
+ENJOY YOUR YOGURTS!!! 
+You just earned 5 stamps and have a total of 8 to use.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: PINK PLUS
+How many yogurts do you want? 3
+ENJOY YOUR YOGURTS!!! 
+You just earned 3 stamps and have a total of 11 to use.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: P
+How many yogurts do you want? -5
+*** Invalid entry. Please enter a valid positive number. ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: Purchase
+How many yogurts do you want? 300000
+ENJOY YOUR YOGURTS!!! 
+You just earned 300000 stamps and have a total of 300011 to use.
+
+CONGRATULATIONS!!! You qualify for a free yogurt.
+Remember every 12 points qualify for a free yogurt :)
+Would you like to use your credits? (Y or N) Yeah
+Enjoy your free yogurt!
+You now have 299999 stamps remaining.
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: Purchase please
+How many yogurts do you want? 1
+ENJOY YOUR YOGURTS!!! 
+You just earned 1 stamps and have a total of 300000 to use.
+
+CONGRATULATIONS!!! You qualify for a free yogurt.
+Remember every 12 points qualify for a free yogurt :)
+Would you like to use your credits? (Y or N) Nein danke
+*** Thank you for shopping with us 
+ see you next time! ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: P
+How many yogurts do you want? 1
+ENJOY YOUR YOGURTS!!! 
+You just earned 1 stamps and have a total of 300001 to use.
+
+CONGRATULATIONS!!! You qualify for a free yogurt.
+Remember every 12 points qualify for a free yogurt :)
+Would you like to use your credits? (Y or N) N
+*** Thank you for shopping with us 
+ see you next time! ***
+
+Menu:
+  P (Process Purchase)
+  S (Shut down)
+
+Your Choice: S
+Shutting down the system. Goodbye!

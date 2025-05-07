@@ -1,0 +1,83 @@
+class Book:
+    # Constructor
+    def __init__(self, title, author, year):
+        self.title = title
+        self.author = author
+        self.year = year
+
+    # Method to display information about the book
+    def display_info(self):
+        print(f"Title: {self.title}")
+        print(f"Author: {self.author}")
+        print(f"Publication Year: {self.year}")
+
+    # Another class method
+    def is_published_recently(self):
+        current_year = 2023  # Assuming the current year is 2023
+        return current_year - self.year <= 10
+
+# Creating an instance of the Book class
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925)
+
+# Accessing attributes
+print(f"Book Title: {book1.title}")
+print(f"Author: {book1.author}")
+print(f"Publication Year: {book1.year}")
+
+# Using the display_info method
+book1.display_info()
+
+# Using the new is_published_recently method
+if book1.is_published_recently():
+    print(f"{book1.title} was published recently.")
+else:
+    print(f"{book1.title} was not published recently.")
+
+class Person:
+    # Constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # Method to display information about the person
+    def display_info(self):
+        print(f"{self.name} is {self.age} years old.")
+
+# Creating an instance of the Person class
+person1 = Person("Alice", 30)
+
+# Accessing attributes
+print(f"Name: {person1.name}")
+print(f"Age: {person1.age}")
+
+# Using the display_info method
+person1.display_info()
+
+
+class Car:
+    # Constructor
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.is_running = False
+
+    # Method to start the car
+    def start_engine(self):
+        self.is_running = True
+        print(f"The {self.year} {self.make} {self.model}'s engine is now running.")
+
+    # Method to stop the car
+    def stop_engine(self):
+        self.is_running = False
+        print(f"The {self.year} {self.make} {self.model}'s engine has been stopped.")
+
+# Creating an instance of the Car class
+my_car = Car(make="Toyota", model="Camry", year=2022)
+
+# Accessing attributes
+print(f"My car is a {my_car.year} {my_car.make} {my_car.model}.")
+
+# Using methods
+my_car.start_engine()
+my_car.stop_engine()

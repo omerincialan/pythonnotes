@@ -1,0 +1,112 @@
+# Hi my name is Omer Incialan. I will write a program that reads from 
+# a file which includes a list of teams that won the World Series Champions
+# In the list it is provided the first year of championship and some 
+# exceptional years in which there was no championship games.
+# With the program I will create a dictionary of winner team and year that team won. 
+# With the dictionary i create, I will write a program that takes year as 
+# input and return the winner of that year as output.
+
+
+# Here I define the first function to read from the file 'WorldSeriesWinnners'
+# So far we know the first year of the championship and years in which no game took place.
+
+######## SOURCE ###########
+
+def readData():
+    try:
+        with open("WorldSeriesWinners.txt", "r") as file:
+            winners = [line.strip() for line in file]
+        return winners
+    except IOError:
+        print("Error reading the file.")
+        return []
+# with the information we have we are creating the dictionary by 
+# incrementing the years and win total of each team.
+def makeDictionaries(winners):
+    yearD = {}
+    winsD = {}
+
+    current_year = 1903
+    for winner in winners:
+        if winner == "1904" or winner == "1994":
+            continue  # Skip years 1904 and 1994
+
+        yearD[current_year] = winner
+
+        if winner in winsD:
+            winsD[winner] += 1
+        else:
+            winsD[winner] = 1
+
+        current_year += 1
+
+    return yearD, winsD
+# we are defining our noduplicate function to use for our set
+def noDuplicates(yearD):
+    return set(yearD.values())
+
+# Here we are creating a file consists of teams and the number of the wins they achieved
+def createFileNoDuplicates(winsD):
+    try:
+        with open("WorldSeriesWinnersND.txt", "wb") as file:
+            for team, wins in winsD.items():
+                file.write(f"{team}: {wins}\n".encode())
+    except IOError:
+        print("Error writing to the file.")
+# This is our main function that executes read operation from the file, 
+# creates dictionaries and sets out of dictionaries. 
+# Talks to user and promp the winner of that specific year asked by the user
+# we will invoke this function at the end of the program.
+def main():
+    winners = readData()
+
+    if not winners:
+        return  # Exit if there was an error reading the file
+
+    yearD, winsD = makeDictionaries(winners)
+    unique_winners = noDuplicates(yearD)
+
+    print("Non-duplicated winners: These teams below won the championship at least once", unique_winners)
+
+    createFileNoDuplicates(winsD)
+    print("File 'WorldSeriesWinnersND.txt' created.")
+
+# This is the while loop we receive input from user, check its validity,
+# if valid, prompts the winner of that year and total number of wins that team has.
+
+    while True:
+        try:
+            user_year = int(input("Enter a year (1903 - 2021): "))
+            if 1903 <= user_year <= 2021:
+                break
+            else:
+                print("Year out of range. Please enter a valid year.")
+        except ValueError:
+            print("Invalid input. Please enter a valid year.")
+# Here we check the input year, look it up in our dictionaries and return the reults
+    if user_year == 1904 or user_year == 1994:
+        print(f"There was no World Series in {user_year}.")
+    else:
+        winning_team = yearD[user_year]
+        total_wins = winsD[winning_team]
+        print(f"In {user_year}, the {winning_team} won the World Series for the {total_wins} time(s).")
+#Here we are calling our main function
+if __name__ == "__main__":
+    main()
+
+########### RUN ############
+
+Non-duplicated winners: These teams below won the championship at least once {'Baltimore Orioles', 'Los Angeles Dodgers', 'New York Giants', 'Detroit Tigers', 'New York Mets', 'Philadelphia Phillies', 'Huston Astros', 'Toronto Blue Jays', 'Boston Americans', 'World Series Not Played in 1904', 'Florida Marlins', 'Cleveland Indians', 'New York Yankees', 'Chicago White Sox', 'Boston Braves', 'Arizona Diamondbacks', 'Boston Red Sox', 'Minnesota Twins', 'Philadelphia Athletics', 'Washington Senators', 'Oakland Athletics', 'World Series Not Played in 1994', 'Anaheim Angels', 'Brooklyn Dodgers', 'Pittsburgh Pirates', 'Atlanta Braves', 'Kansas City Royals', 'Chicago Cubs', 'Cincinnati Reds', 'Milwaukee Braves', 'San Francisco Giants', 'St. Louis Cardinals', 'Washington Nationals'}
+File 'WorldSeriesWinnersND.txt' created.
+
+Enter a year (1903 - 2021): 1111
+Year out of range. Please enter a valid year.
+
+Enter a year (1903 - 2021): nineteen ninety nine
+Invalid input. Please enter a valid year.
+
+Enter a year (1903 - 2021): 2030
+Year out of range. Please enter a valid year.
+
+Enter a year (1903 - 2021): 1990
+In 1990, the Cincinnati Reds won the World Series. In their history, they won the championship for 5 time(s).

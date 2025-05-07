@@ -1,0 +1,19 @@
+Metadata-Version: 1.1
+Name: ezgraphics
+Version: 2.2
+Summary: UNKNOWN
+Home-page: http://ezgraphics.org
+Author: Rance Necaise
+Author-email: necaiser@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9

@@ -1,0 +1,31 @@
+# ---------------- SOURCE ----------------------------------------
+
+MyLastName = 'Incialan'
+myId= 20557589
+numLet = len(MyLastName)
+print(" My family name is", MyLastName, "\n"
+      " My Student ID is", myId, "\n",
+      "The number of characters in my last name is", numLet)
+
+Expression_1 = myId % 13
+Expression_2 = (myId + 4) % 14
+Expression_3 = myId / (numLet + 500)
+Expression_4 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + numLet
+Expression_5 = 14000 / (80 + ((myId - 123456) / ((numLet + 20) ** 2) ))
+
+print( ' Result of Expression #1 is:', Expression_1,'\n',
+     'Result of Expression #2 is:', Expression_2, '\n', 
+     'Result of Expression #3 is:', Expression_3, '\n', 
+     'Result of Expression #3 is:', Expression_4,'\n',
+     'Result of Expression #3 is:', Expression_5)
+
+""" --------------- RUN -----------------
+
+ My family name is Incialan 
+ My Student ID is 20557589 
+ The number of characters in my last name is 8
+ Result of Expression #1 is: 0 
+ Result of Expression #2 is: 7 
+ Result of Expression #3 is: 40467.694881889765 
+ Result of Expression #3 is: 36 
+ Result of Expression #3 is: 0.5354968394416451
